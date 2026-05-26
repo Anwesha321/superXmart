@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperX Mart — India's Premium Local Marketplace</title>
+    <meta name="description" content="Explore and buy premium verified products locally on SuperX Mart. Govt ID verified sellers, GPS verified images, and safe meeting zones.">
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/buy.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="landing-page bg-[#0a0a0a] text-gray-100">
+    
+    <!-- Ambient Glow blobs -->
+    <div class="glow-blob glow-blob-1"></div>
+    <div class="glow-blob glow-blob-2"></div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo-link">
+            <i class="fa-solid fa-bolt-lightning"></i> SuperX Mart
+        </a>
+        <div class="nav-links">
+            <!-- Glowing Premium React Showcase Link -->
+            <a href="pages/premium-card.html" class="premium-showcase-badge" style="display: flex; align-items: center; gap: 6px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; color: #00eaff; background: rgba(0, 234, 255, 0.1); border: 1px solid rgba(0, 234, 255, 0.3); border-radius: 12px; text-decoration: none; box-shadow: 0 0 10px rgba(0, 234, 255, 0.15); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(0, 234, 255, 0.2)'; this.style.borderColor='#00eaff'; this.style.boxShadow='0 0 18px rgba(0, 234, 255, 0.4)'; this.style.transform='translateY(-1px)';" onmouseout="this.style.background='rgba(0, 234, 255, 0.1)'; this.style.borderColor='rgba(0, 234, 255, 0.3)'; this.style.boxShadow='0 0 10px rgba(0, 234, 255, 0.15)'; this.style.transform='none';">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> React Showcase
+            </a>
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme"></button>
+            <div id="navAuthBtns" style="display: flex; gap: 10px;">
+                <a href="pages/login.html" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: var(--glass-bg); border: 1px solid var(--glass-border); width: auto;">Sign In</a>
+                <a href="pages/signup.html" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; width: auto; border-radius: 12px;">Sign Up</a>
+            </div>
+            <div id="navUserBadge" style="display: none; align-items: center; gap: 10px;">
+                <a href="pages/home.html" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; width: auto; border-radius: 12px; font-weight: 700;">Dashboard</a>
+                <a href="pages/seller-dashboard.html" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; width: auto; border-radius: 12px; font-weight: 700; margin-left: 0.5rem;">Seller Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="landing-hero">
+        <span class="hero-tagline"><i class="fa-solid fa-shield-halved"></i> 100% Scam-Free Verified Trades</span>
+        <h1>India's Premium, Secure <br><span style="background: linear-gradient(135deg, #3b82f6, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Local Marketplace</span></h1>
+        <p>Buy and sell premium verified products near you with Govt ID verification, GPS-tagged images, and AI scam detection.</p>
+        
+        <!-- Metrics bar -->
+        <div class="metrics-row max-w-5xl" style="margin-left: auto; margin-right: auto;">
+            <div class="metric-item">
+                <i class="fa-solid fa-id-card text-emerald-500"></i>
+                <span>Govt ID Verified</span>
+            </div>
+            <div class="metric-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>GPS Image Verification</span>
+            </div>
+            <div class="metric-item">
+                <i class="fa-solid fa-handshake"></i>
+                <span>Safe Meeting Zones</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dynamic Authentication Dashboard Widget -->
+    <section style="padding: 0 1rem; position: relative; z-index: 10;">
+        <div class="auth-status-card" id="authWidget">
+            <div class="user-profile-summary">
+                <div class="spinner" style="display: block; margin: 1rem auto; border-color: var(--primary-color); border-top-color: transparent;"></div>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Checking your session...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Interactive Preview Grid -->
+    <section class="catalog-preview-section">
+        <div class="section-title-wrapper">
+            <h2>Explore Verified Products</h2>
+            <p>Direct live listings with high safety ratings. Sign in to place orders or contact sellers.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="landing-search-container">
+            <i class="fa-solid fa-magnifying-glass landing-search-icon"></i>
+            <input type="text" id="landingSearch" class="landing-search-input" placeholder="Search iPhones, Laptops, Accessories...">
+        </div>
+
+        <!-- Filters Chips -->
+        <div class="landing-filter-chips">
+            <button class="landing-chip active" data-filter="all">All Items</button>
+            <button class="landing-chip" data-filter="electronics">Electronics</button>
+            <button class="landing-chip" data-filter="vehicles">Vehicles</button>
+            <button class="landing-chip" data-filter="properties">Properties</button>
+            <button class="landing-chip" data-filter="accessories">Accessories</button>
+        </div>
+
+        <!-- Showcase Product Grid -->
+        <div class="products-grid" id="landingGrid">
+            <!-- Loaded dynamically via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: rgba(0,0,0,0.2); padding: 4rem 1.5rem; border-top: 1px solid var(--glass-border); text-align: center;">
+        <div style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-primary);">
+            <i class="fa-solid fa-bolt-lightning text-primary"></i> SuperX Mart
+        </div>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; max-width: 500px; margin: 0 auto 1.5rem auto;">
+            Experience a new standard of trust in peer-to-peer commerce. Safeguarding local trades through next-generation security.
+        </p>
+        <div style="color: var(--text-muted); font-size: 0.8rem;">
+            &copy; 2026 SuperX Mart. All rights reserved. Built for visual excellence.
+        </div>
+    </footer>
+
+    <!-- Interactive Guest Authentication Requirement Modal -->
+    <div class="modal-overlay" id="authPromptModal">
+        <div class="modal-content-premium">
+            <button class="modal-close-btn" id="closeAuthModal">&times;</button>
+            <div class="auth-prompt-body">
+                <div class="auth-prompt-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3>Authentication Required</h3>
+                <p id="authPromptMessage">Please sign in to buy products, chat with verified sellers, or manage your cart.</p>
+                <div class="auth-prompt-actions">
+                    <button class="btn" style="background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-primary);" id="cancelAuthBtn">Cancel</button>
+                    <a href="pages/login.html" class="btn btn-primary" style="border-radius:12px;">Sign In Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal for Premium Showcase -->
+    <div class="modal-overlay" id="productDetailModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="modal-close" id="closeDetailModal">&times;</button>
+            <div class="modal-body" id="detailBody" style="display:flex; flex-direction:column; padding: 20px;">
+                <!-- Product content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Chat Modal — Premium Cyber Design -->
+    <div class="modal-overlay" id="landingChatModal" style="display:none; z-index:2000;">
+        <div class="chat-modal-wrapper">
+            <!-- Chat Header with Seller Profile -->
+            <div class="chat-modal-header">
+                <div id="landingChatHeader" class="chat-header-info">
+                    <!-- Injected via JS -->
+                </div>
+                <button id="closeLandingChat" class="chat-close-btn">&times;</button>
+            </div>
+            <!-- Messages Area -->
+            <div id="landingChatMessages" class="chat-messages-area">
+                <!-- Messages injected via JS -->
+            </div>
+            <!-- Chat Input Bar -->
+            <div class="chat-input-bar">
+                <input type="text" id="landingChatInput" class="chat-input-field" placeholder="Type a message..." autocomplete="off" />
+                <button class="chat-send-btn" id="landingSendChatBtn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script type="module" src="js/theme.js"></script>
+    
+    <!-- Real-time Auth Status Checking & Catalog Seeding logic -->
+    <script type="module">
+        import { auth, db, rtdb, dbRef, push, set, onValue, update, off } from './js/firebaseConfig.js';
+        import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { doc, getDoc, collection, getDocs, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // Initial Seed products disabled to allow user custom listings
+        const SEED_PRODUCTS = [];
+
+        let loadedProducts = [];
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // Handle Dynamic Session changes
+        onAuthStateChanged(auth, async (user) => {
+            const navAuthBtns = document.getElementById('navAuthBtns');
+            const navUserBadge = document.getElementById('navUserBadge');
+            const authWidget = document.getElementById('authWidget');
+
+            if (user) {
+                // User signed in
+                navAuthBtns.style.display = 'none';
+                navUserBadge.style.display = 'flex';
+
+                let role = 'buyer';
+                let displayName = user.displayName || user.email.split('@')[0];
+                let isPending = false;
+
+                try {
+                    const docSnap = await getDoc(doc(db, "users", user.uid));
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        displayName = data.name || displayName;
+                        role = data.role || 'buyer';
+                        isPending = data.role === 'seller' && data.verificationStatus === 'pending';
+                    }
+                } catch (err) {
+                    console.error("Error loading user profile:", err);
+                }
+
+                // Render dynamic verified widget
+                let actionBtn = `<a href="pages/home.html" class="btn btn-primary btn-glowing mt-4"><i class="fa-solid fa-circle-play"></i> Enter Marketplace Dashboard</a>`;
+                
+                if (user.email === 'admin@superxmart.com') {
+                    role = 'admin';
+                    actionBtn = `
+                        <div style="display:flex; flex-direction:column; gap:10px; width:100%;">
+                            <a href="pages/admin.html" class="btn btn-glowing" style="background: linear-gradient(135deg, #ef4444, #f97316); box-shadow:0 4px 15px rgba(239,68,68,0.3); border:none;"><i class="fa-solid fa-gauge"></i> Enter Admin Control Queue</a>
+                            <a href="pages/home.html" class="btn" style="background: var(--input-bg); border:1px solid var(--input-border); color:var(--text-primary);"><i class="fa-solid fa-house"></i> View Home Feed</a>
+                        </div>
+                    `;
+                }
+
+                const roleBadgeClass = role === 'admin' ? 'admin-badge' : (role === 'seller' ? 'seller-badge' : '');
+                
+                authWidget.innerHTML = `
+                    <div class="user-profile-summary">
+                        <img src="${user.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${displayName}`}" class="user-avatar-large" alt="Avatar">
+                        <div>
+                            <h3 class="user-name-title">Welcome back, ${displayName}!</h3>
+                            <span class="user-role-badge ${roleBadgeClass}">${role}</span>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; max-width: 320px; margin-top: 0.25rem;">
+                            Logged in securely as <strong style="color: var(--text-primary);">${user.email}</strong>.
+                        </p>
+                        ${actionBtn}
+                        <button class="link text-sm mt-3" id="widgetLogoutBtn" style="background:none; border:none; font-weight:600; cursor:pointer;">Log out of account</button>
+                    </div>
+                `;
+
+                document.getElementById('widgetLogoutBtn').addEventListener('click', async () => {
+                    await signOut(auth);
+                    window.location.reload();
+                });
+
+            } else {
+                // Guest mode
+                navAuthBtns.style.display = 'flex';
+                navUserBadge.style.display = 'none';
+
+                authWidget.innerHTML = `
+                    <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem; color:var(--text-primary);">Join India's Smartest P2P Platform</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                        Create a verified account to interact with listings, buy items securely, or start listing your own products.
+                    </p>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <a href="pages/login.html" class="btn btn-primary btn-glowing" style="width: auto; padding: 0.7rem 1.8rem;">Get Started</a>
+                        <a href="pages/signup.html" class="btn" style="background: var(--input-bg); border: 1px solid var(--input-border); width: auto; padding: 0.7rem 1.5rem; color: var(--text-primary);">Register Seller</a>
+                    </div>
+                `;
+            }
+        });
+
+        // Seed products into Firestore and Render Showcase Grid
+        const fetchAndRenderShowcase = async () => {
+            const grid = document.getElementById('landingGrid');
+            grid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem;">
+                    <div class="spinner" style="display: inline-block; border-color: var(--accent-blue); border-top-color: transparent;"></div>
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">Fetching verified catalog...</p>
+                </div>
+            `;
+
+            try {
+                // Fetch listings from Firestore
+                const querySnapshot = await getDocs(collection(db, "products"));
+                let firestoreProducts = [];
+                querySnapshot.forEach((doc) => {
+                    if (!doc.id.startsWith('p') || doc.id.startsWith('cp_')) {
+                        firestoreProducts.push({ id: doc.id, ...doc.data() });
+                    }
+                });
+
+                // If Firestore is completely empty (first run), seed it!
+                if (firestoreProducts.length === 0) {
+                    console.log("Firestore catalog is empty. Seeding initial items...");
+                    for (const prod of SEED_PRODUCTS) {
+                        await setDoc(doc(db, "products", prod.id), prod);
+                    }
+                    loadedProducts = SEED_PRODUCTS;
+                } else {
+                    loadedProducts = firestoreProducts;
+                }
+                
+                // Keep local posts up-to-date in LocalStorage to mirror buy.js/home.js fallback
+                localStorage.setItem('superx_custom_posts', JSON.stringify(loadedProducts));
+
+                renderPreviewGrid();
+
+            } catch (err) {
+                console.error("Firestore loading failed. Falling back to local storage cache:", err);
+                loadedProducts = JSON.parse(localStorage.getItem('superx_custom_posts') || '[]');
+                if (loadedProducts.length === 0) {
+                    loadedProducts = SEED_PRODUCTS;
+                    localStorage.setItem('superx_custom_posts', JSON.stringify(SEED_PRODUCTS));
+                }
+                renderPreviewGrid();
+            }
+        };
+
+        // Render Cards based on search/filters
+        function renderPreviewGrid() {
+            const grid = document.getElementById('landingGrid');
+            let filtered = [...loadedProducts];
+
+            // Apply filter chip
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(p => p.category === currentFilter);
+            }
+
+            // Apply search
+            if (searchQuery) {
+                const q = searchQuery.toLowerCase();
+                filtered = filtered.filter(p => 
+                    p.title.toLowerCase().includes(q) ||
+                    p.location.toLowerCase().includes(q) ||
+                    p.category.toLowerCase().includes(q)
+                );
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem;">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; opacity: 0.15; margin-bottom: 1rem; display: block;"></i>
+                        <h4 style="color: var(--text-secondary);">No products match your search</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Try another keyword or filter category.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card" style="cursor: pointer;" onclick="openPreviewDetail('${p.id}')">
+                    <div class="img-wrap">
+                        <img src="${p.image}" alt="${p.title}" loading="lazy">
+                        <div class="card-badges">
+                            ${p.verified ? '<span class="badge verified"><i class="fa-solid fa-shield-halved"></i> Verified</span>' : ''}
+                            ${p.trustScore >= 90 ? '<span class="badge trust"><i class="fa-solid fa-star"></i> Trust ' + p.trustScore + '</span>' : ''}
+                        </div>
+                        <button class="fav-btn" onclick="event.stopPropagation(); triggerAuthModal('favorite this product')">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="time-badge"><i class="fa-regular fa-clock"></i> ${p.time || '2 hours ago'}</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${p.title}</div>
+                        <div class="card-price">₹${Number(p.price).toLocaleString('en-IN')}</div>
+                        <div class="card-meta">
+                            <span class="location"><i class="fa-solid fa-location-dot"></i> ${p.location}</span>
+                        </div>
+                        <div class="seller-row">
+                            <div class="seller-info"><i class="fa-solid fa-circle-check"></i> Verified Seller</div>
+                            <div class="rating">${renderStarRating(p.rating || 4.5)} ${p.rating || 4.5}</div>
+                        </div>
+                    </div>
+                    <div class="hover-overlay">
+                        <button class="buy-now-pill" onclick="event.stopPropagation(); triggerAuthModal('purchase this product')">
+                            <i class="fa-solid fa-cart-shopping"></i> Buy Now
+                        </button>
+                        <button class="chat-seller-pill" onclick="event.stopPropagation(); openSellerChat('${p.id}')">
+                            <i class="fa-solid fa-comment-dots"></i> Chat Seller
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Open Auth Prompt modal with customized message
+        window.triggerAuthModal = function(actionText) {
+            const user = auth.currentUser;
+            if (user) {
+                // If logged in, redirect to home page where actions are active!
+                window.location.href = 'pages/home.html';
+                return;
+            }
+            document.getElementById('authPromptMessage').textContent = `Please sign in or create an account to ${actionText}, chat, or checkout.`;
+            document.getElementById('authPromptModal').classList.add('active');
+        };
+
+        // Open Preview Detail Modal
+        window.openPreviewDetail = function(id) {
+            const product = loadedProducts.find(p => p.id === id);
+            if (!product) return;
+
+            const body = document.getElementById('detailBody');
+            body.innerHTML = `
+                <div class="detail-modal-inner">
+                    <div class="detail-img-container">
+                        <img src="${product.image}" alt="${product.title}" />
+                        <div class="detail-img-gradient"></div>
+                    </div>
+                    <h2 class="detail-title">${product.title}</h2>
+                    <div class="detail-price">₹${Number(product.price).toLocaleString('en-IN')}</div>
+                    <p class="detail-desc">
+                        ${product.description || 'Verified product listing on SuperX Mart. Govt ID verified seller, safe transaction zone protection enabled.'}
+                    </p>
+
+                    <!-- Seller Profile Card -->
+                    <div class="detail-seller-card">
+                        <div class="detail-seller-left">
+                            <div class="detail-seller-avatar">
+                                <img src="https://api.dicebear.com/7.x/initials/svg?seed=${product.sellerName || 'Seller'}" alt="Seller" />
+                                <span class="online-dot"></span>
+                            </div>
+                            <div>
+                                <div class="detail-seller-name">${product.sellerName || 'Verified Seller'}</div>
+                                <div class="detail-seller-status"><i class="fa-solid fa-circle" style="color:#00e676; font-size:7px;"></i> Online now</div>
+                            </div>
+                        </div>
+                        <div class="detail-seller-right">
+                            <div class="detail-seller-score">${product.trustScore || 90}%</div>
+                            <div class="detail-seller-label">Trust</div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Row -->
+                    <div class="detail-stats-row">
+                        <div class="detail-stat">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>${product.location}</span>
+                        </div>
+                        <div class="detail-stat">
+                            <i class="fa-solid fa-star" style="color:#ffb300;"></i>
+                            <span>${product.rating || 4.5} Rating</span>
+                        </div>
+                        <div class="detail-stat">
+                            <i class="fa-solid fa-shield-halved" style="color:#00e676;"></i>
+                            <span>Verified</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="buy-now-pill detail-buy-btn" onclick="closeAllModals(); triggerAuthModal('purchase this product');">
+                            <i class="fa-solid fa-cart-shopping"></i> Buy Now — ₹${Number(product.price).toLocaleString('en-IN')}
+                        </button>
+                        <button class="chat-seller-pill detail-chat-btn" onclick="closeAllModals(); openSellerChat('${product.id}');">
+                            <i class="fa-solid fa-comment-dots"></i> Chat with Seller
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('productDetailModal').classList.add('active');
+        };
+
+        window.closeAllModals = function() {
+            document.getElementById('productDetailModal').classList.remove('active');
+            document.getElementById('authPromptModal').classList.remove('active');
+        };
+
+        // Close buttons logic
+        document.getElementById('closeAuthModal').addEventListener('click', closeAllModals);
+        document.getElementById('cancelAuthBtn').addEventListener('click', closeAllModals);
+        document.getElementById('closeDetailModal').addEventListener('click', closeAllModals);
+        
+        // Background click closing
+        document.getElementById('authPromptModal').addEventListener('click', (e) => {
+            if (e.target.id === 'authPromptModal') closeAllModals();
+        });
+        document.getElementById('productDetailModal').addEventListener('click', (e) => {
+            if (e.target.id === 'productDetailModal') closeAllModals();
+        });
+
+        // Search listener
+        const searchInput = document.getElementById('landingSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.trim();
+                renderPreviewGrid();
+            });
+        }
+
+        // Filter chips listner
+        document.querySelectorAll('.landing-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.landing-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                currentFilter = chip.dataset.filter;
+                renderPreviewGrid();
+            });
+        });
+
+        // Initialize dynamic loading on load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAndRenderShowcase();
+        });
+
+        // ═══════════════════════════════════════════════════════════
+        // LIVE CHAT WITH SELLER — Landing Page Chat Module
+        // ═══════════════════════════════════════════════════════════
+        let landingChatListenerRef = null;
+        let landingActiveChatProductId = null;
+
+        function getLandingChatId(buyerId, sellerId, productId) {
+            return `${buyerId}_${sellerId}_${productId}`;
+        }
+
+        window.openSellerChat = function(productId) {
+            const user = auth.currentUser;
+            if (!user) {
+                // Guest → show auth prompt
+                document.getElementById('authPromptMessage').textContent =
+                    'Please sign in or create an account to chat with the seller.';
+                document.getElementById('authPromptModal').classList.add('active');
+                return;
+            }
+
+            const product = loadedProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            const sellerId = product.sellerId || 'unknown_seller';
+            const sellerName = product.sellerName || 'Seller';
+            const buyerId = user.uid;
+            const buyerName = user.displayName || user.email?.split('@')[0] || 'Buyer';
+
+            if (sellerId === buyerId) {
+                alert('You are the seller of this product!');
+                return;
+            }
+
+            landingActiveChatProductId = productId;
+
+            // Populate header
+            const headerEl = document.getElementById('landingChatHeader');
+            if (headerEl) {
+                headerEl.innerHTML = `
+                    ${product.image ? `<img src="${product.image}" style="width:40px;height:40px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,0.1);" />` : ''}
+                    <div>
+                        <div style="font-weight:700; font-size:14px; color:var(--text-primary);">${product.title?.split(' — ')[0] || 'Product'}</div>
+                        <div style="font-size:11px; color:#3b82f6; font-weight:600;">Chatting with ${sellerName}</div>
+                    </div>
+                `;
+            }
+
+            // Show modal
+            const chatModal = document.getElementById('landingChatModal');
+            if (chatModal) {
+                chatModal.style.display = 'flex';
+                chatModal.style.alignItems = 'center';
+                chatModal.style.justifyContent = 'center';
+            }
+
+            // Close any open modals
+            closeAllModals();
+
+            const chatId = getLandingChatId(buyerId, sellerId, productId);
+
+            // Save chat metadata to RTDB for both buyer and seller
+            const metadata = {
+                chatId,
+                buyerId,
+                buyerName,
+                sellerId,
+                sellerName,
+                productId,
+                productTitle: product.title || '',
+                productImage: product.image || '',
+                createdAt: new Date().toISOString(),
+                lastMessage: 'Chat started',
+                lastMessageTime: new Date().toISOString(),
+                unread: false
+            };
+
+            const updates = {};
+            updates[`user_chats/${buyerId}/${chatId}`] = metadata;
+            updates[`user_chats/${sellerId}/${chatId}`] = metadata;
+            update(dbRef(rtdb), updates).catch(err => console.error('Chat metadata error:', err));
+
+            // Load & listen to messages
+            const messagesDiv = document.getElementById('landingChatMessages');
+            if (messagesDiv) {
+                messagesDiv.innerHTML = `
+                    <div style="text-align:center; color:var(--text-secondary); padding:60px 20px;">
+                        <i class="fa-solid fa-spinner fa-spin" style="font-size:24px; margin-bottom:12px; display:block;"></i>
+                        <p style="font-size:13px;">Loading conversation...</p>
+                    </div>
+                `;
+            }
+
+            // Unsubscribe previous listener
+            if (landingChatListenerRef) {
+                off(landingChatListenerRef);
+                landingChatListenerRef = null;
+            }
+
+            landingChatListenerRef = dbRef(rtdb, `chats/${chatId}/messages`);
+            onValue(landingChatListenerRef, (snapshot) => {
+                if (!messagesDiv) return;
+                const data = snapshot.val();
+                if (!data) {
+                    messagesDiv.innerHTML = `
+                        <div style="text-align:center; color:var(--text-secondary); padding:60px 20px;">
+                            <i class="fa-solid fa-comments" style="font-size:40px; opacity:0.15; margin-bottom:14px; display:block;"></i>
+                            <p style="font-size:14px; font-weight:600;">No messages yet</p>
+                            <p style="font-size:12px; opacity:0.7; margin-top:4px;">Say hello to the seller!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const currentUid = auth.currentUser?.uid;
+                const keys = Object.keys(data);
+                messagesDiv.innerHTML = keys.map(k => {
+                    const msg = data[k];
+                    const isMe = msg.senderId === currentUid;
+                    const timeStr = msg.timestamp
+                        ? new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                        : '';
+                    return `
+                        <div style="display:flex; justify-content:${isMe ? 'flex-end' : 'flex-start'}; margin-bottom:12px;">
+                            <div style="max-width:78%; padding:10px 14px; border-radius:16px; font-size:13.5px; line-height:1.45;
+                                        background:${isMe ? 'linear-gradient(135deg, #3b82f6, #2563eb)' : 'rgba(255,255,255,0.06)'};
+                                        color:${isMe ? 'white' : 'var(--text-primary)'};
+                                        border-bottom-${isMe ? 'right' : 'left'}-radius:4px;
+                                        border:1px solid ${isMe ? 'transparent' : 'rgba(255,255,255,0.08)'};">
+                                <div style="font-weight:700; font-size:10.5px; margin-bottom:3px; opacity:0.85;">
+                                    ${isMe ? 'You' : (msg.senderName || 'Seller')}
+                                </div>
+                                <div style="word-break:break-word;">${msg.text}</div>
+                                <div style="font-size:9px; text-align:right; margin-top:4px; opacity:0.6; font-weight:500;">
+                                    ${timeStr}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }, (err) => {
+                console.error('Chat listener error:', err);
+                if (messagesDiv) {
+                    messagesDiv.innerHTML = `
+                        <div style="text-align:center; color:#ef4444; padding:60px 20px;">
+                            <i class="fa-solid fa-circle-exclamation" style="font-size:32px; margin-bottom:12px; display:block;"></i>
+                            <p style="font-size:13px;">Could not load messages</p>
+                        </div>
+                    `;
+                }
+            });
+
+            // Focus input
+            setTimeout(() => {
+                document.getElementById('landingChatInput')?.focus();
+            }, 300);
+        };
+
+        // Send message handler
+        async function sendLandingChatMessage() {
+            const input = document.getElementById('landingChatInput');
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text || !landingActiveChatProductId || !auth.currentUser) return;
+
+            const user = auth.currentUser;
+            const product = loadedProducts.find(p => p.id === landingActiveChatProductId);
+            if (!product) return;
+
+            const sellerId = product.sellerId || 'unknown_seller';
+            const chatId = getLandingChatId(user.uid, sellerId, landingActiveChatProductId);
+            const senderName = user.displayName || user.email?.split('@')[0] || 'Buyer';
+
+            input.value = '';
+
+            try {
+                const messagesRef = dbRef(rtdb, `chats/${chatId}/messages`);
+                const newMsgRef = push(messagesRef);
+                await set(newMsgRef, {
+                    senderId: user.uid,
+                    senderName: senderName,
+                    text: text,
+                    timestamp: Date.now()
+                });
+
+                // Update metadata for both parties
+                const metaUpdates = {};
+                metaUpdates[`user_chats/${user.uid}/${chatId}/lastMessage`] = text;
+                metaUpdates[`user_chats/${user.uid}/${chatId}/lastMessageTime`] = new Date().toISOString();
+                metaUpdates[`user_chats/${user.uid}/${chatId}/unread`] = false;
+                metaUpdates[`user_chats/${sellerId}/${chatId}/lastMessage`] = text;
+                metaUpdates[`user_chats/${sellerId}/${chatId}/lastMessageTime`] = new Date().toISOString();
+                metaUpdates[`user_chats/${sellerId}/${chatId}/unread`] = true;
+                await update(dbRef(rtdb), metaUpdates);
+
+                // Push notification to seller
+                const notifId = 'chat_' + Date.now();
+                const notifRef = dbRef(rtdb, `user_notifications/${sellerId}/${notifId}`);
+                await set(notifRef, {
+                    id: notifId,
+                    title: `New Message from ${senderName}`,
+                    message: text,
+                    timestamp: Date.now(),
+                    read: false,
+                    productId: landingActiveChatProductId,
+                    chatId: chatId,
+                    type: 'chat'
+                });
+
+            } catch (err) {
+                console.error('Error sending message:', err);
+                alert('Failed to send message. Please try again.');
+            }
+        }
+
+        // Close landing chat modal
+        function closeLandingChatModal() {
+            const chatModal = document.getElementById('landingChatModal');
+            if (chatModal) chatModal.style.display = 'none';
+            landingActiveChatProductId = null;
+            if (landingChatListenerRef) {
+                off(landingChatListenerRef);
+                landingChatListenerRef = null;
+            }
+        }
+
+        // Event listeners for chat modal
+        document.getElementById('closeLandingChat')?.addEventListener('click', closeLandingChatModal);
+        document.getElementById('landingSendChatBtn')?.addEventListener('click', sendLandingChatMessage);
+        document.getElementById('landingChatInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendLandingChatMessage();
+        });
+        document.getElementById('landingChatModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'landingChatModal') closeLandingChatModal();
+        });
+    </script>
+</body>
+</html>

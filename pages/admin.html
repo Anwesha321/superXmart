@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Superxmart</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 2rem; background: var(--glass-bg); border-radius: 1rem; overflow: hidden; }
+        .admin-table th, .admin-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--glass-border); color: var(--text-primary); }
+        .admin-table th { background: rgba(0,0,0,0.05); font-weight: 600; }
+        .status-badge { padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+        .status-pending { background: #fef08a; color: #854d0e; }
+        .status-approved { background: #bbf7d0; color: #166534; }
+        .status-rejected { background: #fecaca; color: #991b1b; }
+        .action-btn { padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 0.8rem; font-weight: 600; margin-right: 0.5rem; }
+        .btn-approve { background: var(--success); color: white; }
+        .btn-reject { background: var(--danger); color: white; }
+        .id-link { color: var(--primary-color); text-decoration: underline; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <!-- Admin Auth Guard -->
+    <script type="module" src="../js/authGuard.js"></script>
+
+    <nav class="navbar">
+        <div class="nav-brand">Admin Panel</div>
+        <div class="nav-links">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme"></button>
+            <button class="btn btn-primary" id="adminLogoutBtn" style="padding: 0.5rem 1rem;">Log out</button>
+        </div>
+    </nav>
+
+    <main style="padding: 2rem;">
+        <h1>Seller Verification Queue</h1>
+        <p style="color: var(--text-secondary);">Manage and verify seller registrations.</p>
+
+        <div style="overflow-x: auto;">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email / Phone</th>
+                        <th>Address</th>
+                        <th>Gov ID</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="sellersTableBody">
+                    <tr><td colspan="6" class="text-center" style="padding: 2rem;">Loading sellers...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="../js/theme.js"></script>
+    <script type="module" src="../js/admin.js"></script>
+</body>
+</html>

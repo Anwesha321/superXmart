@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Superxmart</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .role-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .role-btn:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+        }
+        .role-btn i {
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+        .role-btn h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .roles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        @media (max-width: 600px) {
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="landing-page bg-[#0a0a0a] text-gray-100">
+    <!-- Ambient Glow blobs -->
+    <div class="glow-blob glow-blob-1"></div>
+    <div class="glow-blob glow-blob-2"></div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <a href="../index.html" class="nav-logo-link" style="font-size: 1.25rem; font-weight: 700; color: var(--primary-color); text-decoration: none;">
+            <i class="fa-solid fa-bolt-lightning"></i> SuperX Mart
+        </a>
+    </nav>
+
+    <!-- Auth Guard -->
+    <script type="module" src="../js/authGuard.js"></script>
+
+    <div class="auth-container">
+        <div class="glass-card" style="max-width: 600px;">
+            <div class="auth-header">
+                <h1>Create an account</h1>
+                <p>Choose your account type to get started.</p>
+            </div>
+
+            <div class="roles-grid">
+                <a href="signup-buyer.html" class="role-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <h3>Buyer</h3>
+                    <span class="text-sm text-secondary text-center">Shop for the best products</span>
+                </a>
+                <a href="signup-seller.html" class="role-btn">
+                    <i class="fa-solid fa-store"></i>
+                    <h3>Seller</h3>
+                    <span class="text-sm text-secondary text-center">Start selling your products</span>
+                </a>
+            </div>
+
+            <div class="divider">or continue with</div>
+
+            <button type="button" class="btn btn-google" id="googleSignupBtn">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                <span>Google</span>
+            </button>
+
+            <p class="text-center mt-4 text-sm text-secondary" style="margin-top: 2rem;">
+                Already have an account? <a href="login.html" class="link">Log in</a>
+            </p>
+        </div>
+    </div>
+
+    <script type="module" src="../js/theme.js"></script>
+    <script type="module" src="../js/auth.js"></script>
+</body>
+</html>

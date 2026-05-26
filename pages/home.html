@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperX Mart | Home</title>
+    <meta name="description" content="SuperX Mart — Your premium marketplace for buying and selling locally.">
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-gradient"></div>
+
+    <!-- Auth Guard -->
+    <script type="module" src="../js/authGuard.js"></script>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand" style="font-size: 1.2rem; font-weight: bold; color: var(--text-color);">Welcome! X Mart</div>
+        <div class="nav-links">
+            <button class="theme-toggle" id="themeToggle" title="Toggle Theme"></button>
+            
+            <!-- Cart Menu -->
+            <div class="cart-menu" style="margin-right: 15px; position: relative;">
+                <button class="notification-btn" id="cartBtn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cartBadge" style="display: none; background: #3b82f6;">0</span>
+                </button>
+            </div>
+            
+            <!-- Notifications Dropdown -->
+            <div class="notification-menu">
+                <button class="notification-btn" id="notifBtn">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge" id="notifBadge">0</span>
+                </button>
+                <div class="dropdown-menu notif-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications</h4>
+                        <div>
+                            <button id="markAllReadBtn" class="text-xs text-primary"><i class="fa-solid fa-check"></i></button>
+                            <button id="clearAllBtn" class="text-xs text-danger"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="notif-list" id="notifList">
+                        <!-- Notifications injected via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Inbox Button -->
+            <div style="position: relative; margin-right: 10px;">
+                <button class="btn-icon" id="chatInboxBtn">
+                    <i class="fa-solid fa-comment"></i>
+                    <span class="badge" id="chatInboxBadge" style="display:none; background:#3b82f6; position:absolute; top:-4px; right:-4px; min-width:18px; height:18px; border-radius:50%; font-size:10px; display:none; align-items:center; justify-content:center; color:white; font-weight:700;">0</span>
+                </button>
+            </div>
+
+            <!-- Profile Menu -->
+            <div class="profile-menu">
+                <button class="profile-btn" id="profileBtn">
+                    <i class="fa-solid fa-user" style="font-size: 1.2rem; padding: 4px;"></i>
+                    <span id="userName" style="display: none;">User</span>
+                    <i class="fa-solid fa-chevron-down text-sm" style="display: none;"></i>
+                </button>
+                
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-item" style="border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; margin-bottom: 0.5rem; cursor: default;">
+                        <div>
+                            <div style="font-weight: 600;" id="dropdownName">User Name</div>
+                            <div style="color: var(--text-secondary); font-size: 0.8rem;" id="dropdownEmail">user@example.com</div>
+                        </div>
+                    </div>
+                    <button class="dropdown-item" onclick="window.location.href='../index.html'">
+                        <i class="fa-solid fa-house"></i> Landing Portal
+                    </button>
+                    <button class="dropdown-item" style="color: #00eaff; font-weight: 700;" onclick="window.location.href='seller-dashboard.html'">
+                        <i class="fa-solid fa-store"></i> 🏢 Seller Dashboard
+                    </button>
+                    <button class="dropdown-item" id="adminPortalLink" style="display: none;" onclick="window.location.href='admin.html'">
+                        <i class="fa-solid fa-gauge-high"></i> Admin Control Panel
+                    </button>
+                    <button class="dropdown-item danger" id="logoutBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i> Log out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Create Post Button -->
+    <button id="fabCreatePost" class="fab" style="border: none; outline: none;">
+        <span class="fab-pulse"></span>
+        <span class="fab-icon-wrap">
+            <i class="fa-solid fa-camera"></i>
+        </span>
+        <span class="fab-label">Create Post</span>
+    </button>
+
+    <!-- Subheader -->
+    <div class="subheader max-w-7xl">
+        <div class="search-container">
+            <i class="fa-solid fa-search search-icon-input"></i>
+            <input type="text" class="search-input" placeholder="Search on X Mart">
+        </div>
+
+        <div class="filter-nav">
+            <button class="filter-btn">Filter</button>
+            <button class="filter-btn sell-btn" id="sellBtn">
+                <i class="fa-solid fa-plus"></i> Sell
+            </button>
+            <button class="filter-btn" onclick="window.location.href='buy.html'">Buy</button>
+            <div class="category-wrapper" style="position: relative; display: inline-block;">
+                <button class="filter-btn" id="categoryBtn">Categories <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="category-menu" id="categoryMenu" style="display: none; position: absolute; top: 100%; left: 0; min-width: 150px; background: var(--card-bg, var(--glass-bg)); border: 1px solid rgba(59,130,246,0.1); border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); z-index: 200;">
+                    <button class="category-item" style="display: block; width: 100%; padding: 8px 12px; text-align: left; background: transparent; border: none; color: var(--text-color, var(--text-primary)); cursor: pointer;">Electronics</button>
+                    <button class="category-item" style="display: block; width: 100%; padding: 8px 12px; text-align: left; background: transparent; border: none; color: var(--text-color, var(--text-primary)); cursor: pointer;">Fashion</button>
+                    <button class="category-item" style="display: block; width: 100%; padding: 8px 12px; text-align: left; background: transparent; border: none; color: var(--text-color, var(--text-primary)); cursor: pointer;">Home &amp; Garden</button>
+                    <button class="category-item" style="display: block; width: 100%; padding: 8px 12px; text-align: left; background: transparent; border: none; color: var(--text-color, var(--text-primary)); cursor: pointer;">Vehicles</button>
+                    <button class="category-item" style="display: block; width: 100%; padding: 8px 12px; text-align: left; background: transparent; border: none; color: var(--text-color, var(--text-primary)); cursor: pointer;">Sports</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="dashboard-main max-w-7xl">
+        <!-- Trading Section -->
+        <section class="product-section" style="margin-bottom: 40px;">
+            <div class="section-header-flex">
+                <h2 class="dashboard-title">Trading</h2>
+                <div class="location-picker">
+                    <i class="fa-solid fa-location-dot location-icon"></i>
+                </div>
+            </div>
+            <div class="post-grid" id="main-grid">
+                <!-- Products injected via JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div class="modal-overlay" id="createPostModal">
+        <div class="modal-content" style="max-width: 480px;">
+            <button class="modal-close" id="closeCreatePostModal">&times;</button>
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-camera" style="color: var(--primary-color); margin-right: 8px;"></i>Create New Post</h3>
+            </div>
+            <form id="createPostForm" class="modal-form" style="margin-top: 10px;">
+                <input type="text" id="cpTitle" placeholder="Product Title" class="search-input" required style="padding-left: 18px; border-radius: 12px;">
+                <input type="number" id="cpPrice" placeholder="Price (₹)" class="search-input" required style="padding-left: 18px; border-radius: 12px;">
+                <input type="text" id="cpLocation" placeholder="Location" class="search-input" required style="padding-left: 18px; border-radius: 12px;">
+                <input type="file" accept="image/*" id="cpImage" placeholder="Upload Image" class="search-input" required style="padding-left: 18px; border-radius: 12px;">
+                <button type="submit" class="btn btn-primary" style="margin-top: 8px; border-radius: 12px;">
+                    <i class="fa-solid fa-paper-plane"></i> Post Product
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Your Cart</h3>
+            <button class="btn-icon" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Injected via JS -->
+        </div>
+        <div style="padding: 20px; border-top: 1px solid var(--border-color, var(--glass-border)); background: var(--card-bg, var(--glass-bg));">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: bold; font-size: 18px;">
+                <span>Total:</span>
+                <span id="cartTotal" class="text-primary">₹0</span>
+            </div>
+            <button class="btn btn-primary" id="checkoutBtn" style="width: 100%; border-radius: 12px;">
+                <i class="fa-solid fa-credit-card"></i> Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Inbox Sidebar -->
+    <div class="cart-sidebar" id="chatInboxSidebar" style="z-index: 1100;">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-comments"></i> My Chats</h3>
+            <button class="btn-icon" id="closeChatInbox"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <!-- Premium Tabs -->
+        <div style="display:flex; border-bottom:1px solid var(--glass-border); background:rgba(0,0,0,0.05);">
+            <button id="inboxTabSell" style="flex:1; padding:12px; background:transparent; border:none; border-bottom:2px solid #3b82f6; color:#3b82f6; font-weight:700; font-size:13px; cursor:pointer; transition:all 0.3s; outline:none;">
+                <i class="fa-solid fa-store" style="margin-right:6px;"></i>Selling
+            </button>
+            <button id="inboxTabBuy" style="flex:1; padding:12px; background:transparent; border:none; border-bottom:2px solid transparent; color:var(--text-secondary); font-weight:600; font-size:13px; cursor:pointer; transition:all 0.3s; outline:none;">
+                <i class="fa-solid fa-cart-shopping" style="margin-right:6px;"></i>Buying
+            </button>
+        </div>
+
+        <div id="chatInboxList" style="flex:1; overflow-y:auto; padding:10px;">
+            <div style="text-align:center; padding:40px 20px; color:var(--text-secondary);">
+                <i class="fa-solid fa-comment-slash" style="font-size:32px; opacity:0.2; margin-bottom:10px; display:block;"></i>
+                <p style="font-size:13px;">No conversations yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Conversation Modal -->
+    <div class="modal-overlay" id="chatConvoModal" style="z-index: 1200; display:none;">
+        <div class="modal-content" style="max-width:500px; height:80vh; display:flex; flex-direction:column;">
+            <button class="modal-close" id="closeChatConvo">&times;</button>
+            <div id="chatConvoHeader" style="padding:12px 16px; border-bottom:1px solid var(--glass-border); display:flex; align-items:center; gap:12px;">
+                <!-- Injected via JS -->
+            </div>
+            <div id="chatConvoMessages" style="flex:1; overflow-y:auto; padding:16px;">
+                <!-- Messages injected via JS -->
+            </div>
+            <div style="padding:12px 16px; border-top:1px solid var(--glass-border); display:flex; gap:8px;">
+                <input type="text" id="chatConvoInput" placeholder="Type a message..." style="flex:1; padding:10px 14px; border-radius:12px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary); font-size:14px; outline:none;" />
+                <button class="btn btn-primary" id="chatConvoSendBtn" style="padding:10px 16px; border-radius:12px;">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/theme.js"></script>
+    <script type="module" src="../js/home.js"></script>
+</body>
+</html>

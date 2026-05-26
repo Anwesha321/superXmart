@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperX Mart | Buy — India's Trusted Marketplace</title>
+    <meta name="description" content="Browse premium verified products on SuperX Mart. Cars, phones, laptops, properties and more.">
+    <link rel="stylesheet" href="../css/buy.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="buy-page">
+
+    <div class="buy-container">
+
+        <!-- Top Bar -->
+        <div class="buy-topbar">
+            <button class="back-btn" onclick="window.location.href='home.html'">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <h1>Buy on SuperX Mart</h1>
+            <span class="results-count" id="resultsCount">15 products</span>
+        </div>
+
+        <!-- Search & Filters -->
+        <div class="buy-search-bar">
+            <div class="search-wrap">
+                <i class="fa-solid fa-search search-icon"></i>
+                <input type="text" id="buySearch" placeholder="Search products, cars, homes...">
+            </div>
+            <div class="filter-chips">
+                <button class="filter-chip active" data-filter="all">All</button>
+                <button class="filter-chip" data-filter="electronics">Electronics</button>
+                <button class="filter-chip" data-filter="vehicles">Vehicles</button>
+                <button class="filter-chip" data-filter="properties">Properties</button>
+                <button class="filter-chip" data-filter="accessories">Accessories</button>
+            </div>
+        </div>
+
+        <!-- Trust Banner -->
+        <div class="trust-banner">
+            <div class="trust-item">
+                <i class="fa-solid fa-shield-halved green"></i>
+                <span>Verified Sellers</span>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-location-crosshairs"></i>
+                <span>GPS Verified Images</span>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-id-card green"></i>
+                <span>Govt ID Verified</span>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-robot"></i>
+                <span>AI Scam Detection</span>
+            </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-handshake green"></i>
+                <span>Safe Meeting Zones</span>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+    <div class="products-grid" id="productsGrid"></div>
+    <!-- Chat Modal -->
+    <div class="modal-overlay" id="chatModal" style="display:none;">
+        <div class="modal-content" style="max-width:480px;">
+            <button class="modal-close" id="closeChatModal">&#x2715;</button>
+            <div class="modal-body" id="chatBody" style="display:flex; flex-direction:column; height:400px;">
+                <div id="chatMessages" style="flex:1; overflow-y:auto; margin-bottom:10px;">
+                    <!-- Messages will be appended here -->
+                </div>
+                <div style="display:flex; gap:8px;">
+                    <input type="text" id="chatInput" placeholder="Type a message..." style="flex:1; padding:8px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);"/>
+                    <button class="btn btn-primary" id="sendChatBtn" style="padding:8px 12px;">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detailModal" style="display:none;">
+        <div class="modal-content" style="max-width:600px;">
+            <button class="modal-close" id="closeDetailModal">&#x2715;</button>
+            <div class="modal-body" id="detailBody" style="display:flex; flex-direction:column;">
+                <!-- Detail content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <script type="module" src="../js/buy.js"></script>
+</body>
+</html>

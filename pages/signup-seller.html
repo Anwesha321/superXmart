@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Sign Up | Superxmart</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .file-upload-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        .file-upload-input {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .file-upload-box {
+            border: 2px dashed var(--input-border);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 0.75rem;
+            background: var(--input-bg);
+            transition: all 0.3s;
+        }
+        .file-upload-box:hover, .file-upload-input:hover + .file-upload-box {
+            border-color: var(--primary-color);
+            background: rgba(59, 130, 246, 0.05);
+        }
+        .file-name {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            word-break: break-all;
+        }
+        select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="landing-page bg-[#0a0a0a] text-gray-100">
+    <!-- Ambient Glow blobs -->
+    <div class="glow-blob glow-blob-1"></div>
+    <div class="glow-blob glow-blob-2"></div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <a href="../index.html" class="nav-logo-link" style="font-size: 1.25rem; font-weight: 700; color: var(--primary-color); text-decoration: none;">
+            <i class="fa-solid fa-bolt-lightning"></i> SuperX Mart
+        </a>
+    </nav>
+
+    <!-- Auth Guard -->
+    <script type="module" src="../js/authGuard.js"></script>
+
+    <div class="auth-container" style="padding: 2rem 1rem;">
+        <div class="glass-card" style="max-width: 600px;">
+            <div class="auth-header">
+                <h1>Seller Registration</h1>
+                <p>Register your store and start selling</p>
+            </div>
+
+            <form id="signupSellerForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="input-group">
+                        <label for="sellerName">Full Name</label>
+                        <input type="text" id="sellerName" required placeholder="Full Name">
+                    </div>
+                    <div class="input-group">
+                        <label for="sellerPhone">Phone</label>
+                        <input type="tel" id="sellerPhone" required placeholder="Phone Number">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="sellerEmail">Email</label>
+                    <input type="email" id="sellerEmail" required placeholder="Enter your email">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="input-group">
+                        <label for="sellerPassword">Password</label>
+                        <input type="password" id="sellerPassword" required placeholder="Min 6 chars">
+                    </div>
+                    <div class="input-group">
+                        <label for="sellerConfirmPassword">Confirm Password</label>
+                        <input type="password" id="sellerConfirmPassword" required placeholder="Confirm">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="sellerAddress">Complete Address</label>
+                    <textarea id="sellerAddress" required placeholder="Enter your full business address" style="width: 100%; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid var(--input-border); background: var(--input-bg); color: var(--text-primary); font-size: 1rem; outline: none; resize: vertical; min-height: 80px;"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="sellerIdType">Government ID Type</label>
+                    <select id="sellerIdType" required>
+                        <option value="">Select ID Type</option>
+                        <option value="Aadhaar">Aadhaar Card</option>
+                        <option value="Voter ID">Voter ID</option>
+                        <option value="Driving License">Driving License</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Upload Government ID (Images Only)</label>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="idFront" accept="image/*" required class="file-upload-input" onchange="document.getElementById('idFrontName').textContent = this.files[0]?.name || ''">
+                            <div class="file-upload-box" style="padding: 1rem;">
+                                <i class="fa-solid fa-cloud-arrow-up text-secondary"></i>
+                                <div class="text-sm mt-2">Front Image</div>
+                            </div>
+                            <span id="idFrontName" class="file-name"></span>
+                        </div>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="idBack" accept="image/*" required class="file-upload-input" onchange="document.getElementById('idBackName').textContent = this.files[0]?.name || ''">
+                            <div class="file-upload-box" style="padding: 1rem;">
+                                <i class="fa-solid fa-cloud-arrow-up text-secondary"></i>
+                                <div class="text-sm mt-2">Back Image</div>
+                            </div>
+                            <span id="idBackName" class="file-name"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="signupSellerBtn" style="margin-top: 1rem;">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Submit Registration</span>
+                </button>
+            </form>
+
+            <p class="text-center mt-4 text-sm text-secondary">
+                Already have an account? <a href="login.html" class="link">Log in</a>
+            </p>
+            <p class="text-center mt-4 text-sm text-secondary">
+                <a href="signup.html" class="link"><i class="fa-solid fa-arrow-left"></i> Back to roles</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="successModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="glass-card" style="text-align: center; max-width: 400px; margin: 0 1rem; animation: modalPop 0.3s ease-out;">
+            <i class="fa-solid fa-circle-check" style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;"></i>
+            <h2 style="margin-bottom: 1rem;">Registration Submitted</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Your account is under review and will be verified within 6 hours.</p>
+            <button class="btn btn-primary" onclick="window.location.href='login.html'">Go to Login</button>
+        </div>
+    </div>
+    <style>
+        @keyframes modalPop {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+
+    <script type="module" src="../js/theme.js"></script>
+    <script type="module" src="../js/auth.js"></script>
+</body>
+</html>

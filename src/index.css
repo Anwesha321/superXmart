@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Custom Scrollbar for premium dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020512;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 234, 255, 0.1);
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 234, 255, 0.3);
+}
+
+/* Glassmorphism custom components */
+.glass-effect {
+  background: rgba(10, 15, 30, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-effect-premium {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(0, 234, 255, 0.15);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5),
+              inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Soft Neon Glows */
+.neon-glow-cyan {
+  box-shadow: 0 0 20px -2px rgba(6, 182, 212, 0.4);
+}
+
+.neon-glow-cyan-hover:hover {
+  box-shadow: 0 0 30px 2px rgba(6, 182, 212, 0.7);
+}
+
+.neon-glow-blue {
+  box-shadow: 0 0 20px -2px rgba(59, 130, 246, 0.4);
+}
+
+.neon-glow-blue-hover:hover {
+  box-shadow: 0 0 30px 2px rgba(59, 130, 246, 0.7);
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(20px) scale(0.95);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}
+
+.animate-float-1 {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-reverse 10s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+/* Double-layered blur filter utility for product background in card */
+.img-blur-bg {
+  filter: blur(35px) saturate(1.8);
+  opacity: 0.35;
+  transform: scale(1.2);
+}
